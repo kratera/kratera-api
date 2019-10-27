@@ -18,8 +18,15 @@
 		<jwt.version>3.8.3</jwt.version>
 		<jbcrypt.version>0.4</jbcrypt.version>
 	</properties>
-	
+
 	<dependencies>
+	
+		<dependency>
+			<groupId>io.kratera</groupId>
+			<artifactId>kratera-util</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+
 		<!-- TOKEN -->
 		<dependency>
 			<groupId>com.auth0</groupId>

@@ -103,7 +103,7 @@
 			<artifactId>feign-slf4j</artifactId>
 			<version>${feign.version}</version>
 		</dependency>
-		
+
 		<!-- LOMBOK -->
 		<dependency>
 			<groupId>org.projectlombok</groupId>
@@ -144,5 +144,6 @@
 	<modules>
 		<module>user-service</module>
 		<module>authentication-service</module>
+		<module>kratera-util</module>
 	</modules>
 </project>

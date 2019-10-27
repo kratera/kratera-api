@@ -49,7 +49,7 @@ public class KrateraUser {
 	@Enumerated(EnumType.STRING)
 	@ElementCollection(fetch = FetchType.EAGER, targetClass = KrateraRole.class)
 	@CollectionTable(name = "kratera_role", joinColumns = @JoinColumn(name = "kratera_id"))
-	@Column(name = "role", length = 25, nullable = false)
+	@Column(name = "role", length = 20, nullable = false)
 	private Set<KrateraRole> roles;
 	
 	@Column(name = "verified", nullable = false, columnDefinition = "tinyint(1) default 0")
