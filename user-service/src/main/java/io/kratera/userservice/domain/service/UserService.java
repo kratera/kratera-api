@@ -2,8 +2,11 @@ package io.kratera.userservice.domain.service;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import io.kratera.userservice.domain.entity.KrateraUser;
 
+@Service
 public interface UserService {
 
 	KrateraUser save(KrateraUser user);

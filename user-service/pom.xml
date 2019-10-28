@@ -15,16 +15,46 @@
 	<name>user-service</name>
 
 	<properties>
+		<spring.data.version>2.2.0.RELEASE</spring.data.version>
+		<hikariCP.version>3.4.1</hikariCP.version>
+		<flayway.version>6.0.7</flayway.version>
 		<jwt.version>3.8.3</jwt.version>
 		<jbcrypt.version>0.4</jbcrypt.version>
 	</properties>
 
 	<dependencies>
-	
+
 		<dependency>
 			<groupId>io.kratera</groupId>
 			<artifactId>kratera-util</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+
+		<!-- SPRING DATA -->
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-commons</artifactId>
+			<version>${spring.data.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-jpa</artifactId>
+			<version>${spring.data.version}</version>
+		</dependency>
+
+
+		<!-- CONNECTION POOL -->
+		<dependency>
+			<groupId>com.zaxxer</groupId>
+			<artifactId>HikariCP</artifactId>
+			<version>${hikariCP.version}</version>
+		</dependency>
+
+		<!-- MIGRATION -->
+		<dependency>
+			<groupId>org.flywaydb</groupId>
+			<artifactId>flyway-core</artifactId>
+			<version>${flayway.version}</version>
 		</dependency>
 
 		<!-- TOKEN -->
@@ -41,4 +71,19 @@
 			<version>${jbcrypt.version}</version>
 		</dependency>
 	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.flywaydb</groupId>
+				<artifactId>flyway-maven-plugin</artifactId>
+				<version>${flayway.version}</version>
+				<configuration>
+					<url>jdbc:postgresql://localhost:5432/kratera</url>
+					<user>kratera</user>
+					<password>postgres</password>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 </project>

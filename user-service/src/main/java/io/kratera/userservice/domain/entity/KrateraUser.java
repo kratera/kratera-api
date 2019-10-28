@@ -17,13 +17,15 @@ import javax.persistence.JoinColumn;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Type;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
 @AllArgsConstructor
 @Entity
-@Table(name = "kratera_user")
+@Table(name = "kratera_user", schema = "user_service")
 public class KrateraUser {
 	
 	@Id
@@ -31,10 +33,10 @@ public class KrateraUser {
 	@Column(name = "kratera_id", nullable = false)
 	private long id;
 	
-	@Column(name = "kratera_user", nullable = false)
+	@Column(name = "username", nullable = false, unique = true)
 	private String username;
 	
-	@Column(name = "email", nullable = false)
+	@Column(name = "email", nullable = false, unique = true)
 	private String email;
 	
 	@Column(name = "first_name", nullable = false)
@@ -48,11 +50,12 @@ public class KrateraUser {
 	
 	@Enumerated(EnumType.STRING)
 	@ElementCollection(fetch = FetchType.EAGER, targetClass = KrateraRole.class)
-	@CollectionTable(name = "kratera_role", joinColumns = @JoinColumn(name = "kratera_id"))
+	@CollectionTable(name = "kratera_role", schema = "user_service", joinColumns = @JoinColumn(name = "user_id"))
 	@Column(name = "role", length = 20, nullable = false)
 	private Set<KrateraRole> roles;
 	
-	@Column(name = "verified", nullable = false, columnDefinition = "tinyint(1) default 0")
+	@Column(name = "verified", nullable = false)
+	@Type(type = "org.hibernate.type.NumericBooleanType")
 	private boolean verified;
 	
 	public KrateraUser(){
