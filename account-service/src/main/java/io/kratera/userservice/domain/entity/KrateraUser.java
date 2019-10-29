@@ -1,19 +1,11 @@
 package io.kratera.userservice.domain.entity;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
-
-import javax.persistence.CollectionTable;
 import javax.persistence.Column;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
-import javax.persistence.JoinColumn;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -31,35 +23,33 @@ public class KrateraUser {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "kratera_id", nullable = false)
-	private long id;
+	private Long id;
 	
-	@Column(name = "username", nullable = false, unique = true)
-	private String username;
-	
-	@Column(name = "email", nullable = false, unique = true)
+	@Column(name = "email", length = 200, nullable = false, unique = true)
 	private String email;
 	
-	@Column(name = "first_name", nullable = false)
+	@Column(name = "first_name", length = 100, nullable = false)
 	private String firstName;
 	
-	@Column(name = "last_name", nullable = true)
+	@Column(name = "last_name", length = 100, nullable = true)
 	private String lastName;
 	
 	@Column(name = "password", nullable = false)
 	private String password;
 	
 	@Enumerated(EnumType.STRING)
-	@ElementCollection(fetch = FetchType.EAGER, targetClass = KrateraRole.class)
-	@CollectionTable(name = "kratera_role", schema = "user_service", joinColumns = @JoinColumn(name = "user_id"))
 	@Column(name = "role", length = 20, nullable = false)
-	private Set<KrateraRole> roles;
+	private UserRole role;
 	
 	@Column(name = "verified", nullable = false)
 	@Type(type = "org.hibernate.type.NumericBooleanType")
 	private boolean verified;
 	
+	@Column(name = "organizer", nullable = true)
+	private Organizer organizer;
+	
 	public KrateraUser(){
-		roles = new HashSet<KrateraRole>(Arrays.asList(KrateraRole.USER));
+		role = UserRole.NONE;
 	}
 	
 }

@@ -142,7 +142,7 @@
 		</plugins>
 	</build>
 	<modules>
-		<module>user-service</module>
+		<module>account-service</module>
 		<module>authentication-service</module>
 		<module>kratera-util</module>
 	</modules>

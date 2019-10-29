@@ -1,12 +1,9 @@
 package io.kratera.userservice.app.web.controller;
 
-import java.util.Arrays;
-import java.util.HashSet;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import io.kratera.userservice.domain.entity.KrateraRole;
+import io.kratera.userservice.domain.entity.UserRole;
 import io.kratera.userservice.domain.entity.KrateraUser;
 import io.kratera.userservice.domain.service.UserService;
 import io.kratera.util.JsonTransformer;
@@ -23,14 +20,13 @@ public class UserController {
 		
 		Spark.post("users", (req, res) -> {
 			KrateraUser user = new KrateraUser();
-			user.setUsername("test");
 			user.setEmail("andersori@emal");
 			user.setFirstName("Teste");
 			user.setPassword("21212");
 			user.setVerified(false);
-			user.setRoles(new HashSet<KrateraRole>(Arrays.asList(KrateraRole.USER, KrateraRole.ADMIN)));
+			user.setRole(UserRole.NONE);
 			return service.save(user);
-		});
+		}, transform);
 	}
 	
 }

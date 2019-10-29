@@ -10,9 +10,9 @@
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>user-service</artifactId>
+	<artifactId>account-service</artifactId>
 
-	<name>user-service</name>
+	<name>account-service</name>
 
 	<properties>
 		<spring.data.version>2.2.0.RELEASE</spring.data.version>
@@ -41,7 +41,6 @@
 			<artifactId>spring-data-jpa</artifactId>
 			<version>${spring.data.version}</version>
 		</dependency>
-
 
 		<!-- CONNECTION POOL -->
 		<dependency>
@@ -82,6 +81,7 @@
 					<url>jdbc:postgresql://localhost:5432/kratera</url>
 					<user>kratera</user>
 					<password>postgres</password>
+					<schemas>account_service</schemas>
 				</configuration>
 			</plugin>
 		</plugins>

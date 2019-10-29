@@ -1,7 +1,6 @@
 package io.kratera.userservice.domain.entity;
 
-public enum KrateraRole {
+public enum UserRole {
 	ADMIN,
-	USER,
-	CREATOR;
+	NONE;
 }
